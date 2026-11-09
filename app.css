@@ -1,0 +1,502 @@
+:root {
+  --fundo: #eeeeee;
+  --cartao: #ffffff;
+  --elevado: #f5f5f5;
+  --borda: #d1d5db;
+  --texto: #111827;
+  --secundario: #6b7280;
+  --acento: #2563eb;
+  --acento-suave: #dbeafe;
+  --sucesso: #16a34a;
+  --sucesso-suave: #dcfce7;
+  --aviso: #b45309;
+  --aviso-suave: #fef3c7;
+  --mono: Consolas, "Courier New", monospace;
+  --sans: "Segoe UI", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+[hidden] { display: none !important; }
+
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  background: var(--fundo);
+  color: var(--texto);
+  font-family: var(--sans);
+  font-size: 14px;
+}
+
+.page {
+  height: 100%;
+  min-height: 560px;
+  padding: 16px;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: 12px;
+}
+
+.cartao {
+  background: var(--cartao);
+  border: 1px solid var(--borda);
+  border-radius: 8px;
+}
+
+.topbar {
+  background: var(--cartao);
+  border: 1px solid var(--borda);
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.topbar-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+#busca {
+  flex: 1;
+  min-width: 0;
+  background: var(--elevado);
+  color: var(--texto);
+  border: 1px solid var(--borda);
+  border-radius: 6px;
+  padding: 8px 10px;
+  font: inherit;
+}
+
+.acoes { display: flex; gap: 8px; flex-shrink: 0; }
+
+.btn {
+  border-radius: 6px;
+  padding: 8px 14px;
+  font: inherit;
+  cursor: pointer;
+}
+
+.btn.primario {
+  background: var(--acento);
+  color: #fff;
+  border: 1px solid var(--acento);
+}
+
+.btn.fantasma {
+  background: transparent;
+  color: var(--texto);
+  border: 1px solid var(--borda);
+}
+
+.btn.contorno {
+  background: transparent;
+  color: var(--acento);
+  border: 1px solid var(--acento);
+}
+
+.btn.link {
+  background: transparent;
+  color: var(--acento);
+  border: 0;
+  padding: 2px 6px;
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.status {
+  margin: 10px 0 0;
+  font-size: 12px;
+  color: var(--secundario);
+}
+
+.status.aviso {
+  margin-top: 10px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--aviso);
+  background: var(--aviso-suave);
+  color: var(--aviso);
+}
+
+.principal {
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  gap: 12px;
+  min-height: 0;
+}
+
+.lista-cartao {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  padding: 8px;
+}
+
+.titulo-lista {
+  margin: 4px 8px 10px;
+  font-size: 14px;
+}
+
+.lista-notas {
+  overflow: auto;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0 4px;
+}
+
+.nota {
+  display: block;
+  width: 100%;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  background: var(--elevado);
+  border: 1px solid var(--borda);
+  border-radius: 6px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.nota.selecionada {
+  border-color: var(--acento);
+  box-shadow: inset 3px 0 0 var(--acento);
+}
+
+.nota-numero {
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.nota-meta {
+  margin-top: 4px;
+  font-size: 11px;
+  color: var(--secundario);
+}
+
+.nota-arquivo {
+  margin-top: 4px;
+  font-size: 10px;
+  color: var(--secundario);
+  opacity: 0.6;
+  word-break: break-word;
+}
+
+.painel-ignorados {
+  margin: 8px 4px 4px;
+  padding: 8px;
+  max-height: 160px;
+  overflow: auto;
+  border: 1px solid var(--borda);
+  border-radius: 6px;
+  background: var(--elevado);
+}
+
+.painel-ignorados h3,
+.aviso-bloco h3 {
+  margin: 0 0 8px;
+  font-size: 12px;
+}
+
+.ignorado { margin-bottom: 8px; }
+
+.ignorado-titulo {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.ignorado-msg {
+  margin: 2px 0 0;
+  font-size: 10px;
+  color: var(--secundario);
+}
+
+.detalhe { min-height: 0; min-width: 0; }
+
+.detalhe-cartao {
+  height: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.vazio {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 12px;
+  padding: 24px;
+}
+
+.vazio-titulo {
+  margin: 0;
+  font-size: 18px;
+  color: var(--secundario);
+}
+
+.vazio-texto {
+  margin: 0;
+  max-width: 520px;
+  color: var(--secundario);
+  opacity: 0.7;
+}
+
+.aviso-bloco {
+  width: min(520px, 100%);
+  text-align: left;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid var(--aviso);
+  background: var(--aviso-suave);
+  max-height: 280px;
+  overflow: auto;
+}
+
+.aviso-bloco h3 { color: var(--aviso); }
+
+.breadcrumb {
+  margin: 0 0 8px;
+  font-size: 12px;
+  color: var(--secundario);
+}
+
+.cabecalho-nota {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.titulo-linha {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.titulo-linha h2 {
+  margin: 0;
+  font-size: 26px;
+}
+
+.badge {
+  background: var(--sucesso-suave);
+  color: var(--sucesso);
+  border: 1px solid var(--sucesso);
+  border-radius: 12px;
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.resumo {
+  margin: 0 0 16px;
+  font-size: 12px;
+  color: var(--secundario);
+}
+
+.abas {
+  display: flex;
+  border-bottom: 1px solid var(--borda);
+}
+
+.aba {
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  padding: 8px 16px;
+  font: inherit;
+  color: var(--secundario);
+  cursor: pointer;
+}
+
+.aba.ativa {
+  color: var(--acento);
+  border-bottom-color: var(--acento);
+  font-weight: 700;
+}
+
+.painel-aba {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  margin-top: 12px;
+}
+
+.itens-intro h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.itens-intro p {
+  margin: 2px 0 12px;
+  font-size: 12px;
+  color: var(--secundario);
+}
+
+.grade-scroll { overflow: auto; flex: 1; min-height: 0; }
+
+.grade {
+  min-width: 760px;
+}
+
+.grade-cabecalho,
+.linha-item {
+  display: grid;
+  grid-template-columns: minmax(140px, 2fr) 72px minmax(150px, 1.1fr) minmax(140px, 1fr) 72px 28px;
+  gap: 8px;
+}
+
+.grade-cabecalho {
+  margin-bottom: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--secundario);
+  opacity: 0.85;
+}
+
+.linha-item {
+  border-top: 1px solid var(--borda);
+  padding: 12px 0;
+}
+
+.desc { font-weight: 700; }
+
+.codigo-linha {
+  margin-top: 4px;
+  font-size: 11px;
+  color: var(--secundario);
+}
+
+.categoria {
+  display: inline-block;
+  margin-top: 4px;
+  background: var(--acento-suave);
+  color: var(--acento);
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-size: 10px;
+}
+
+.mono { font-family: var(--mono); }
+
+.ud {
+  margin: 0;
+  font-size: 11px;
+}
+
+.master {
+  margin: 6px 0 0;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--acento);
+  word-break: break-all;
+}
+
+.acoes-ud {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.pill-valido {
+  background: var(--sucesso-suave);
+  color: var(--sucesso);
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-size: 10px;
+}
+
+.lista-ucs {
+  max-height: 160px;
+  overflow: auto;
+}
+
+.uc-linha {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ok { color: var(--sucesso); font-size: 11px; }
+
+.uc-btn {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--secundario);
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+}
+
+.uc-btn:hover { color: var(--acento); }
+
+.qtd {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.caixas {
+  margin: 0;
+  font-size: 11px;
+  color: var(--secundario);
+}
+
+.chevron {
+  background: transparent;
+  border: 0;
+  color: var(--secundario);
+  cursor: pointer;
+  padding: 0;
+  font-size: 12px;
+}
+
+.painel-info { overflow: auto; }
+
+.info-bloco { max-width: 720px; }
+
+.info-bloco h3 { margin: 12px 0 4px; font-size: 14px; }
+.info-bloco h3:first-child { margin-top: 0; }
+.info-bloco p { margin: 0; color: var(--secundario); word-break: break-word; }
+
+.drop-overlay {
+  display: none;
+  position: fixed;
+  inset: 12px;
+  z-index: 20;
+  border: 2px dashed var(--acento);
+  border-radius: 12px;
+  background: rgba(37, 99, 235, 0.08);
+  color: var(--acento);
+  font-weight: 700;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+body.is-drag .drop-overlay { display: flex; }
+
+@media (max-width: 900px) {
+  .page { height: auto; min-height: 100%; }
+  .principal { grid-template-columns: 1fr; }
+  .lista-cartao { max-height: 360px; }
+  .detalhe-cartao { min-height: 70vh; }
+  .topbar-row { flex-wrap: wrap; }
+  .cabecalho-nota { flex-wrap: wrap; }
+}

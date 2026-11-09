@@ -1,0 +1,12 @@
+{
+  "manifest_version": 3,
+  "name": "Leitor XML CBC",
+  "version": "1.0.0",
+  "description": "Lê XML de faturamento CBC, lista notas e consulta itens, UD, UCs e código master.",
+  "action": {
+    "default_title": "Leitor XML CBC"
+  },
+  "background": {
+    "service_worker": "background.js"
+  }
+}

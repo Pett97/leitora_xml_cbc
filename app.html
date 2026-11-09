@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Leitor XML CBC</title>
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+  <div class="drop-overlay" aria-hidden="true">Solte os arquivos XML aqui</div>
+  <div class="page">
+    <header class="topbar">
+      <div class="topbar-row">
+        <input id="busca" type="search" placeholder="Buscar notas, produtos, lotes ou códigos UC…" autocomplete="off">
+        <div class="acoes">
+          <button id="btn-adicionar" type="button" class="btn primario">Adicionar XML…</button>
+          <button id="btn-limpar" type="button" class="btn fantasma">Limpar</button>
+          <input id="arquivo" type="file" accept=".xml,text/xml,application/xml" multiple hidden>
+        </div>
+      </div>
+      <p id="status" class="status">Adicione um ou mais arquivos XML.</p>
+    </header>
+
+    <div class="principal">
+      <aside class="cartao lista-cartao">
+        <h2 class="titulo-lista">Notas fiscais</h2>
+        <div id="lista-notas" class="lista-notas"></div>
+        <div id="painel-ignorados" class="painel-ignorados" hidden>
+          <h3>Arquivos não importados</h3>
+          <div id="lista-ignorados"></div>
+        </div>
+      </aside>
+
+      <section class="detalhe">
+        <div id="vazio" class="vazio">
+          <p class="vazio-titulo">Nenhuma nota selecionada</p>
+          <p class="vazio-texto">Adicione arquivos XML de faturamento CBC ou selecione uma nota na lista.</p>
+          <div id="vazio-ignorados" class="aviso-bloco" hidden>
+            <h3>Arquivos não importados</h3>
+            <div id="lista-ignorados-vazio"></div>
+          </div>
+        </div>
+
+        <article id="detalhe-nota" class="cartao detalhe-cartao" hidden>
+          <p id="breadcrumb" class="breadcrumb"></p>
+          <div class="cabecalho-nota">
+            <div class="titulo-linha">
+              <h2 id="titulo-nota"></h2>
+              <span class="badge">Processada</span>
+            </div>
+            <button id="btn-baixar" type="button" class="btn contorno">Baixar XML</button>
+          </div>
+          <p id="resumo" class="resumo"></p>
+
+          <div class="abas" role="tablist">
+            <button id="aba-itens" type="button" class="aba ativa" role="tab" aria-selected="true">Itens</button>
+            <button id="aba-info" type="button" class="aba" role="tab" aria-selected="false">Informações adicionais</button>
+          </div>
+
+          <div id="painel-itens" class="painel-aba">
+            <div class="itens-intro">
+              <h3>Itens da nota</h3>
+              <p>Detalhes de produtos, lotes e rastreabilidade (UD/UC)</p>
+            </div>
+            <div id="grade-itens" class="grade-scroll"></div>
+          </div>
+
+          <div id="painel-info" class="painel-aba painel-info" hidden>
+            <div class="info-bloco">
+              <h3>Comprador</h3>
+              <p id="info-comprador"></p>
+              <h3>Emitente</h3>
+              <p id="info-emitente"></p>
+              <h3>Chave NF</h3>
+              <p id="info-chave" class="mono"></p>
+              <h3>Emissão / Guia</h3>
+              <p id="info-emissao"></p>
+              <h3>Arquivo</h3>
+              <p id="info-arquivo"></p>
+              <h3>Valor total (soma UC)</h3>
+              <p id="info-valor"></p>
+            </div>
+          </div>
+        </article>
+      </section>
+    </div>
+  </div>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
